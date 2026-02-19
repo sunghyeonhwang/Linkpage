@@ -3,7 +3,7 @@ import 'dotenv/config';
 export const env = {
   DATABASE_URL: process.env.DATABASE_URL!,
   JWT_SECRET: process.env.JWT_SECRET || 'dev-secret',
-  JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '24h',
+  JWT_EXPIRES_IN: (process.env.JWT_EXPIRES_IN || '24h').trim(),
   SUPABASE_URL: process.env.SUPABASE_URL || '',
   SUPABASE_SERVICE_KEY: process.env.SUPABASE_SERVICE_KEY || '',
   SMTP_HOST: process.env.SMTP_HOST || 'smtp.gmail.com',
