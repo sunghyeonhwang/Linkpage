@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Design Tokens */
+  --color-primary: #6366F1;
+  --color-primary-hover: #4F46E5;
+  --color-background: #FFFFFF;
+  --color-surface: #F9FAFB;
+  --color-text-primary: #111827;
+  --color-text-secondary: #6B7280;
+  --color-border: #E5E7EB;
+  --color-error: #EF4444;
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+
+  /* Theme CSS variables (defaults) */
+  --theme-bg: #FFFFFF;
+  --theme-text: #1A1A2E;
+  --theme-btn-bg: #1A1A2E;
+  --theme-btn-text: #FFFFFF;
+  --theme-accent: #6366F1;
+  --theme-radius: 8px;
+  --theme-font: 'Pretendard', system-ui, sans-serif;
+  --theme-btn-style: filled;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Pretendard Variable', 'Pretendard', system-ui, -apple-system, sans-serif;
+    color: var(--color-text-primary);
+    background-color: var(--color-background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    word-break: keep-all;
+  }
+
+  input, textarea, select, button {
+    font-family: inherit;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Landing page button effects */
+.btn-gradient {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.33, 1, 0.68, 1),
+              box-shadow 0.25s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.btn-gradient::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.25) 45%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0.25) 55%,
+    transparent 65%
+  );
+  transform: translateX(-100%);
+  transition: none;
+}
+.btn-gradient:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(21, 93, 252, 0.4);
+}
+.btn-gradient:hover::after {
+  transform: translateX(100%);
+  transition: transform 0.6s ease;
+}
+.btn-gradient:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 5px 15px rgba(21, 93, 252, 0.3);
+}
+
+.btn-outline {
+  transition: transform 0.25s cubic-bezier(0.33, 1, 0.68, 1),
+              background-color 0.25s ease,
+              border-color 0.25s ease;
+}
+.btn-outline:hover {
+  transform: translateY(-2px) scale(1.03);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.btn-outline:active {
+  transform: translateY(1px) scale(0.98);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-white {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.33, 1, 0.68, 1),
+              box-shadow 0.25s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.btn-white::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(21, 93, 252, 0.08) 45%,
+    rgba(21, 93, 252, 0.12) 50%,
+    rgba(21, 93, 252, 0.08) 55%,
+    transparent 65%
+  );
+  transform: translateX(-100%);
+  transition: none;
+}
+.btn-white:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+}
+.btn-white:hover::after {
+  transform: translateX(100%);
+  transition: transform 0.6s ease;
+}
+.btn-white:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.feature-card {
+  transition: transform 0.3s cubic-bezier(0.33, 1, 0.68, 1),
+              box-shadow 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
