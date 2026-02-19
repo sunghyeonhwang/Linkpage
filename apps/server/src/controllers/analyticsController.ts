@@ -36,7 +36,7 @@ export const analyticsController = {
       const period = (req.query.period as AnalyticsPeriod) || '7d';
       const data = await analyticsService.getAnalytics(
         req.userId!,
-        req.params.profileId,
+        req.params.profileId as string,
         period,
       );
       res.json({ data });

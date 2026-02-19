@@ -13,7 +13,7 @@ export const profileController = {
 
   async getProfile(req: Request, res: Response, next: NextFunction) {
     try {
-      const profileId = req.params.profileId;
+      const profileId = req.params.profileId as string;
       const profile = await profileService.getProfile(req.userId!, profileId);
       res.json({ data: profile });
     } catch (err) {
@@ -23,7 +23,7 @@ export const profileController = {
 
   async updateProfile(req: Request, res: Response, next: NextFunction) {
     try {
-      const profileId = req.params.profileId;
+      const profileId = req.params.profileId as string;
       const profile = await profileService.updateProfile(req.userId!, profileId, req.body);
       res.json({ data: profile });
     } catch (err) {
@@ -33,7 +33,7 @@ export const profileController = {
 
   async updateSlug(req: Request, res: Response, next: NextFunction) {
     try {
-      const profileId = req.params.profileId;
+      const profileId = req.params.profileId as string;
       const profile = await profileService.updateSlug(req.userId!, profileId, req.body.slug);
       res.json({ data: profile });
     } catch (err) {
@@ -52,7 +52,7 @@ export const profileController = {
 
   async deleteProfile(req: Request, res: Response, next: NextFunction) {
     try {
-      await profileService.deleteProfile(req.userId!, req.params.profileId);
+      await profileService.deleteProfile(req.userId!, req.params.profileId as string);
       res.json({ data: { message: '프로필이 삭제되었습니다' } });
     } catch (err) {
       next(err);
@@ -70,7 +70,7 @@ export const profileController = {
       const base64 = req.file.buffer.toString('base64');
       const dataUrl = `data:${req.file.mimetype};base64,${base64}`;
 
-      const profileId = req.params.profileId;
+      const profileId = req.params.profileId as string;
       const profile = await profileService.updateProfile(req.userId!, profileId, {
         avatar_url: dataUrl,
       } as any);
@@ -91,7 +91,7 @@ export const profileController = {
       const base64 = req.file.buffer.toString('base64');
       const dataUrl = `data:${req.file.mimetype};base64,${base64}`;
 
-      const profileId = req.params.profileId;
+      const profileId = req.params.profileId as string;
       const profile = await profileService.updateProfile(req.userId!, profileId, {
         background_image_url: dataUrl,
       } as any);
@@ -104,7 +104,7 @@ export const profileController = {
 
   async removeBackgroundImage(req: Request, res: Response, next: NextFunction) {
     try {
-      const profileId = req.params.profileId;
+      const profileId = req.params.profileId as string;
       const profile = await profileService.updateProfile(req.userId!, profileId, {
         background_image_url: null,
       } as any);
